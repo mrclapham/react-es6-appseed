@@ -1,11 +1,10 @@
-#HTML5 and OpenFin modular development
-###A guide to building HTML5 webb apps in OpenFin, using ES6, SASS, WebPack and React (optional)
+# HTML5/React/ES6 modular development
 
-The purpose of this repo is to show the possibility of developing HTML5 and OpenFin apps in a modular way. 
+### A bare bones starter-pack for building HTML5 webb apps using ES6, SASS, WebPack and React (optional)
 
 It ustalises ES6 syntax, post-processed through [WebPack](https://webpack.github.io/), to make it possible to write in modules, which may then be imported and incorporated, as required, and therefore shared beween windows and apps.
 
-The project require some setting up and configuring and the steps are explained below and further annotated within the source code itself. The project is, however, set up and ready to run and may be used and modified as an 'app seed' without delving into the minutiae of the setup (although it recommend you do delve and learn). 
+The project requires some setting up and configuring and the steps are explained below and further annotated within the source code itself. The project is, however, set up and ready to run and may be used and modified as an 'app seed' without delving into the minutiae of the setup (although it recommend you do delve and learn). 
 
 React is included in the project but is optional, it could be used as a starting point for 'vanilla' js apps. 
 
@@ -133,13 +132,4 @@ import TestUtils from 'react/lib/ReactTestUtils.js';
 import ReactHeader from '../src/js/components/common-header.js';
 ```
 Then you are able to write your tests against your React components. See the API documentation on the [React](https://facebook.github.io/react/docs/test-utils.html) site. 
-
-###OpenFin
-The app is setup as an OpenFin app but with 'try/catch' checks set up to prevent the app breaking if viewed in a browser and allowing the individual components to be unit tested, again, without throwing errors.
-
-The app uses the OpenFin [InterApplicationBus](http://cdn.openfin.co/jsdocs/stable/fin.desktop.module_InterApplicationBus.html) to update all the common headers when one is changed. 
-
-To install as an OpenFin app click on the link below. For the app to run the localhost sever must be started by running 'node server' in the terminal.
-
-[https://dl.openfin.co/services/download?fileName=openfin_modules&config=http://localhost:9075/app_local.json](https://dl.openfin.co/services/download?fileName=openfin_modules&config=http://localhost:9075/app_local.json)
 
