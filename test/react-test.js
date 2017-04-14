@@ -29,7 +29,6 @@ describe('ReactHeader', function () {
         expect(mainHeader.textContent).toEqual('Testing header');
         expect(subHeader.textContent).toEqual('testing subHeadline');
     });
-
 });
 
 

@@ -1,17 +1,18 @@
 {
-  "name": "OpenFin_appseed",
+  "name": "react-es6-appseed",
   "version": "1.0.0",
-  "description": "A vanilla simple openfin app to be used as a starting point for app development",
+  "description": "A vanilla simple react/vanilla.js seed to be used as a starting point for app development",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/karma start --single-run --browsers Chrome",
-    "build-main": "webpack --config webpack.config.js --watch",
-    "build-child": "webpack --config webpack-childwin.config.js --watch",
-    "build": "webpack --config webpack.config.js && webpack --config webpack-childwin.config.js",
+    "clean":"",
+    "copy-html":"cp src/html/index.html build/",
+    "build-dev": "npm run copy-html && webpack --config webpack.config.js --watch",
+    "build": "webpack --config webpack.config.js",
     "start": "node server.js"
   },
   "keywords": [
-    "OpenFin"
+    "React ES6 App-seed"
   ],
   "author": "Graham Clapham",
   "license": "MIT",

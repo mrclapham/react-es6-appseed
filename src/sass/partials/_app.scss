@@ -1,6 +1,15 @@
 .no-drag{
   -webkit-app-region: no-drag;
 }
+
+.drag{
+  -webkit-app-region: drag;
+}
+
+.common-header{
+  color: #ffffff;
+};
+
 .content{
   padding: 30px;
 }
