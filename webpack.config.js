@@ -1,4 +1,5 @@
 var path = require('path');
+var HTMLWebpackPlugin = require('html-webpack-plugin');
 var config = {
     entry: path.resolve(__dirname, 'src/js/index.js'),
     devtool: "source-map",
@@ -6,35 +7,40 @@ var config = {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js'
     },
+    plugins: [new HTMLWebpackPlugin({
+        title: "App seed",
+        minify: { collapseWhitespace: true },
+        hash: true,
+        template: "./src/html/index.ejs"
+    })],
+
+  devServer: {
+    proxy: { // proxy URLs to backend development server
+      '/api': 'http://localhost:3000'
+    },
+    contentBase: path.join(__dirname, 'build'), // boolean | string | array, static file location
+    compress: true, // enable gzip compression
+    historyApiFallback: true, // true for index.html upon 404, object for multiple paths
+    hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
+    https: false, // true for self-signed, object for cert authority
+    noInfo: true, // only errors & warns on hot reload
+    // ...
+  },
+
+
     module: {
-        loaders: [{
-            test: /\.js?$/, // A regexp to test the require path. accepts either js or jsx
+        rules: [{
+            test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            loader: ['babel'], // The module to load. "babel" is short for "babel-loader"
-            query: {
-                presets: ['es2015']
-            },
-            devtool: "source-map"
+            use: ['babel-loader', "source-map-loader"]
         },
-
-            {
-                test: /\.jsx?$/, // A regexp to test the require path. accepts either js or jsx
-                exclude: /node_modules/,
-                loader: ['babel'], // The module to load. "babel" is short for "babel-loader"
-                query: {
-                    presets: ['react', 'es2015']
-                },
-                "plugins": []
-            },
-
-            {
-                // When you encounter SCSS files, parse them with node-sass,
-                // then return the results as a string of CSS
-                test: /\.scss/,
-                loader: 'style!css!sass',
-                loaders: ['style', 'css', 'sass']
-            },
-            { test: /\.png$/, loader: "url-loader?limit=100000" }
+        {
+            // When you encounter SCSS files, parse them with node-sass,
+            // then return the results as a string of CSS
+            test: /\.scss/,
+            use: ['style-loader', 'css-loader', 'sass-loader']
+        },
+        { test: /\.png$/, loader: "url-loader?limit=100000" }
         ]
     }
 };

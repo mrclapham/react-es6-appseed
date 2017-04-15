@@ -1,10 +1,11 @@
 // Karma configuration
 // Generated on Thu Jan 21 2016 16:03:50 GMT+0000 (GMT)
+var path = require('path');
 
-var webpackConfig = require('./webpack.config');
-webpackConfig.entry = {};
+// var webpackConfig = require('./webpack.config');
+// webpackConfig.entry = {};
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -30,8 +31,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'test/*-test.js': [ 'webpack' ],
-      'build/bundle.js': [ 'webpack' ]
+      'test/*-test.js': ['webpack'],
+      'build/bundle.js': ['webpack']
     },
 
     // test results reporter to use
@@ -70,19 +71,46 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity,
 
-      webpack: webpackConfig,
-          // karma watches the test entry points
-          // (you don't need to specify the entry option)
-          // webpack watches dependencies
-
-          // webpack configuration
-
-
-      webpackMiddleware: {
-          // webpack-dev-middleware configuration
-          // i. e.
-          noInfo: true
+    webpack: { //kind of a copy of your webpack config
+      devtool: 'inline-source-map', //just do inline source maps instead of the default
+      module: {
+        loaders: [
+          {
+            test: /\.json$/,
+            loader: 'json'
+          },
+          {
+            test: /\.js$/,
+            exclude: /\/node_modules\//,
+            loader: 'babel',
+            query: {
+              presets: [
+                "react",
+                "es2015"
+              ]
+            }
+          }
+        ]
+      },
+      externals: {
+        'jsdom': 'window',
+        'react/addons': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': true
       }
+    },
+    // karma watches the test entry points
+    // (you don't need to specify the entry option)
+    // webpack watches dependencies
+
+    // webpack configuration
+
+
+    webpackMiddleware: {
+      // webpack-dev-middleware configuration
+      // i. e.
+      noInfo: true
+    }
 
 
   })

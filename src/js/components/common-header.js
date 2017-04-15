@@ -7,7 +7,7 @@ export default class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            openFinHeadline: "React component headline"
+            openFinHeadline: "React component headline here"
         };
     };
     //=== Mounting lifecycle
@@ -39,7 +39,7 @@ export default class Header extends React.Component {
     render() {
         return (<div className="common-header">
             <SubHeader />
-            <p>React component</p>
+            <h1>Module loading </h1>
             <div className="main-header">
                 {this.props.headline}
             </div>
