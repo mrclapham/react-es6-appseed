@@ -14,11 +14,6 @@ describe('ReactHeader', function () {
         expect(inst instanceof ReactHeader).toEqual(true);
         expect(wrapper.contains(["This is the default headline"])).toEqual(true);
 
-        //         let wrapper = shallow(
-        //             <ReactHeader />
-        //         );
-        // console.log(wrapper);
-        //        expect(wrapper.contains(<div className="main-header" />)).toEqual(true);
         });
     });
 
