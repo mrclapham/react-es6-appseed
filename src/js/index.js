@@ -1,9 +1,12 @@
+import 'core-js';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from '../js/components/common-header.js';
+import App from '../js/components/App/App.js';
+import Header from '../js/components/header/common-header.js';
+import Footer from '../js/components/footer/footer.js';
 import HeaderVanilla from '../js/vanilla_conmponents/vanilla-header.js';
 import Enums from '../js/Enums.js'
-import 'core-js';
+import   { connect }  from 'react-redux'
 
 require("../sass/entry.scss");
 
@@ -17,7 +20,7 @@ function init() {
     .render(document.querySelector('#content-vanilla'));
 
 // React renderer.
-    ReactDOM.render(<Header headline={"Set headline"} subHeadline={'Set subHeadline'} />,
+    ReactDOM.render(<App />,
         document.querySelector('#content')
     );
 }
