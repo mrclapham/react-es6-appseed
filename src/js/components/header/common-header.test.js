@@ -4,7 +4,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ReactHeader from '../src/js/components/common-header.js';
+import ReactHeader from './common-header.js';
 
 
 describe('ReactHeader', function () {
