@@ -7,6 +7,6 @@ describe("header-reducer", ()=>{
     });
     it("Handles action of type UPADTE_HEADER.", ()=>{
         const action = {type:UPDATE_HEADER,  payload: "Revised header"}
-        expect(HeaderReducer(action)).toEqual("Revised header");
+        expect(HeaderReducer("",action)).toEqual("Revised header");
     });
 });
