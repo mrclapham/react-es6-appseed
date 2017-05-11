@@ -1,5 +1,5 @@
 import React from 'react';
-import Enums from '../Enums.js';
+import Enums from '../../Enums.js';
 import SubHeader from './sub-module.js'
 
 export default class Header extends React.Component {
@@ -39,7 +39,7 @@ export default class Header extends React.Component {
     render() {
         return (<div className="common-header">
             <SubHeader />
-            <h1>Module loading </h1>
+            <h3>React header</h3>
             <div className="main-header">
                 {this.props.headline}
             </div>
@@ -53,9 +53,4 @@ export default class Header extends React.Component {
 Header.defaultProps = {
     headline: "This is the default headline",
     subHeadline: "The subHeadline"
-};
-
-Header.propTypes = {
-    headline: React.PropTypes.string,
-    subHeadline: React.PropTypes.string
 };

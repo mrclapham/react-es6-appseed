@@ -19,7 +19,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test/*-test.js'
+      'src/**/*.test.js'
     ],
 
 
@@ -31,7 +31,7 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'test/*-test.js': ['webpack'],
+      'src/**/*.test.js': ['webpack'],
       'build/bundle.js': ['webpack']
     },
 
@@ -77,12 +77,12 @@ module.exports = function (config) {
         loaders: [
           {
             test: /\.json$/,
-            loader: 'json'
+            loader: 'json-loader'
           },
           {
             test: /\.js$/,
             exclude: /\/node_modules\//,
-            loader: 'babel',
+            loader: 'babel-loader',
             query: {
               presets: [
                 "react",
@@ -94,9 +94,9 @@ module.exports = function (config) {
       },
       externals: {
         'jsdom': 'window',
-        'react/addons': true,
-        'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': true
+        'react/addons': 'react/addons',
+        'react/lib/ExecutionEnvironment': 'react/lib/ExecutionEnvironment',
+        'react/lib/ReactContext': 'react/lib/ReactContext'
       }
     },
     // karma watches the test entry points
