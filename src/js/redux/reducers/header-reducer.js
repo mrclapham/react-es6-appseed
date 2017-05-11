@@ -10,9 +10,6 @@ export default (state = "Default header text", action = {type:null, payload:null
         case UPDATE_HEADER :
             return action.payload
             break;
-        case "other" :
-            return "other"
-            break;
         default:
             return state;
     }
