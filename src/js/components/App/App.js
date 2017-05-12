@@ -1,8 +1,10 @@
 import React from 'react';
 import Header from '../header/common-header';
 import Footer from '../footer/footer';
+import store from '../../redux/store'
+import { Provider, connect } from 'react-redux'
 
-export default class App extends React.Component {
+class App extends React.Component {
 
     constructor(props) {
         super(props);
@@ -42,5 +44,25 @@ export default class App extends React.Component {
         </div>);
     }
 }
+
+// const mapStateToProps = (state) => {
+//   return {
+//     todos: getVisibleTodos(state.todos, state.visibilityFilter)
+//   }
+// }
+
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onTodoClick: (id) => {
+//       dispatch(toggleTodo(id))
+//     }
+//   }
+// }
+
+
+
 // Default state and props
 App.defaultProps = {};
+
+export default App;
