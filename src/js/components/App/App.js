@@ -1,8 +1,9 @@
 import React from 'react';
 import Header from '../header/common-header';
 import Footer from '../footer/footer';
-import store from '../../redux/store'
-import { Provider, connect } from 'react-redux'
+import store from '../../redux/store';
+import { updateHeader } from '../../redux/actions/update-header-actions';
+import { Provider, connect } from 'react-redux';
 
 class App extends React.Component {
 
@@ -35,30 +36,24 @@ class App extends React.Component {
     componentDidUpdate() {
         //console.log("componentDidUpdate");
     };
+    //---- 
+    randomHeaderUpdate() {
+        console.log("The props === ", this.props)
+        //props.updateHeader( Math.random() * 100 )
+        updateHeader(Math.random() * 100);
+    };
     //=== Render
     render() {
         return (<div className="app">
             <h3>Main App</h3>
+            <button onClick={this.randomHeaderUpdate.bind(this)}>change header</button>
             <Header />
             <Footer />
         </div>);
     }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     todos: getVisibleTodos(state.todos, state.visibilityFilter)
-//   }
-// }
 
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onTodoClick: (id) => {
-//       dispatch(toggleTodo(id))
-//     }
-//   }
-// }
 
 
 
