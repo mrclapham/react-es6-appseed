@@ -1,8 +1,10 @@
 import React from 'react';
 import Enums from '../../Enums.js';
-import SubHeader from './sub-module.js'
+import SubHeader from './sub-module.js';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export default class Header extends React.Component {
+class Header extends React.Component {
 
     constructor(props) {
         super(props);
@@ -54,3 +56,7 @@ Header.defaultProps = {
     headline: "This is the default headline",
     subHeadline: "The subHeadline"
 };
+
+
+
+export default Header;

@@ -1,9 +1,7 @@
 import React from 'react';
 import Header from '../header/common-header';
 import Footer from '../footer/footer';
-import store from '../../redux/store';
-import { updateHeader } from '../../redux/actions/update-header-actions';
-import { Provider, connect } from 'react-redux';
+import { connect } from "react-redux"
 
 class App extends React.Component {
 
@@ -37,27 +35,24 @@ class App extends React.Component {
         //console.log("componentDidUpdate");
     };
     //---- 
-    randomHeaderUpdate() {
-        console.log("The props === ", this.props)
-        //props.updateHeader( Math.random() * 100 )
-        updateHeader(Math.random() * 100);
-    };
+
     //=== Render
     render() {
-        return (<div className="app">
-            <h3>Main App</h3>
-            <button onClick={this.randomHeaderUpdate.bind(this)}>change header</button>
+        return (
+        <div className="app">
+            <h3>Main App {this.props.header}</h3>
             <Header />
             <Footer />
-        </div>);
+        </div>
+        );
     }
 }
 
-
-
-
+const mapStateToProps = (state)=>{
+    return {header: state.header}
+}
 
 // Default state and props
 App.defaultProps = {};
 
-export default App;
+export default connect( mapStateToProps )( App );

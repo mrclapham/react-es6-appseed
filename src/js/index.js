@@ -7,10 +7,11 @@ import Footer from '../js/components/footer/footer.js';
 import HeaderVanilla from '../js/vanilla_conmponents/vanilla-header.js';
 import Enums from '../js/Enums.js';
 import { Provider } from 'react-redux'; 
-import store from './redux/store'
+import { store } from './redux/store'
 require("../sass/entry.scss");
 
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("  store -- ", store)
     init();
 });
 
