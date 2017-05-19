@@ -4,7 +4,7 @@
   "description": "A vanilla simple react/vanilla.js seed to be used as a starting point for app development",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/karma start --single-run --browsers Chrome",
+    "test": "./node_modules/.bin/karma start --browsers Chrome",
     "serve": "webpack-dev-server --inline --hot",
     "dev": "npm run serve && webpack --config webpack.config.js --watch",
     "build": "webpack --config webpack.config.js",

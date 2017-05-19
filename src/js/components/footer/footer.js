@@ -19,9 +19,6 @@ export default class Footer extends React.Component {
     componentWillReceiveProps(nextProps) {
         // console.log("componentWillReceiveProps: nextProps ",nextProps)
     };
-    shouldComponentUpdate() {
-        //console.log("shouldComponentUpdate");
-    };
     componentWillUpdate() {
         //console.log("componentWillUpdate");
     };

@@ -37,32 +37,34 @@ class App extends React.Component {
         //console.log("componentDidUpdate");
     };
     //---- 
-    onButtonClick(){
-        this.props.updateHeader("jhadahsashga");
+    onButtonClick() {
+        this.props.updateHeader("new header " + String(Math.ceil(Math.random() * 100)));
     }
 
     //=== Render
     render() {
         return (
-        <div className="app">
-            <h3>Main App {this.props.header}</h3>
-            <button onClick={this.onButtonClick.bind(this)}>Click Me</button>
-            <Header />
-            <Footer />
-        </div>
+            <div className="app">
+                <div className="container bs-docs-container">
+                    <h3>Main App {this.props.header}</h3>
+                    <button className="btn btn-default" onClick={this.onButtonClick.bind(this)}>Update header</button>
+                    <Header headline={this.props.header} />
+                    <Footer />
+                </div>
+            </div>
         );
     }
 }
 
-const mapStateToProps = (state)=>{
-    return {header: state.header}
+const mapStateToProps = (state) => {
+    return { header: state.header }
 }
 
-const mapDispatchToProps = (dispatch)=>{
-    return bindActionCreators({updateHeader: updateHeader}, dispatch);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ updateHeader: updateHeader }, dispatch);
 }
 
 // Default state and props
 App.defaultProps = {};
 
-export default connect( mapStateToProps, mapDispatchToProps )( App );
+export default connect(mapStateToProps, mapDispatchToProps)(App);

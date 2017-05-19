@@ -8,7 +8,7 @@ var config = {
         filename: 'bundle.js'
     },
     plugins: [new HTMLWebpackPlugin({
-        title: "App seed",
+        title: "This title is passed from the webpack.config.js",
         minify: { collapseWhitespace: true },
         hash: true,
         template: "./src/html/index.ejs"

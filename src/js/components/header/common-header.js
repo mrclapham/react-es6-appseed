@@ -24,9 +24,6 @@ class Header extends React.Component {
     componentWillReceiveProps(nextProps) {
         // console.log("componentWillReceiveProps: nextProps ",nextProps)
     };
-    shouldComponentUpdate() {
-        //console.log("shouldComponentUpdate");
-    };
     componentWillUpdate() {
         //console.log("componentWillUpdate");
     };
@@ -39,7 +36,7 @@ class Header extends React.Component {
     };
     //=== Render
     render() {
-        return (<div className="common-header">
+        return (<div className="common-header headerStyle">
             <SubHeader />
             <h3>React header</h3>
             <div className="main-header">
