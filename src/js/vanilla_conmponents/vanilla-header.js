@@ -14,6 +14,7 @@ let Header = {
         this.config.target = target;
 
         let template = `<div class="header-vanilla">
+        <div>This is a plain, vanilla, JS component - no libraries.</div>
             <div class="header-text">${this.getText()}</div>
             <div class="header-sub-text">${this.getSubText()}</div>
             <p>Input header text here:</p>

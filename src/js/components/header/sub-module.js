@@ -29,9 +29,5 @@ export default class SubHeader extends React.Component {
 }
 
 SubHeader.defaultProps =  {
-    text: "This is the default text"
-};
-
-SubHeader.propTypes ={
-    text: React.PropTypes.string
+    text: "This is the default text for the sub-module"
 };

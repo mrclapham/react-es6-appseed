@@ -46,7 +46,7 @@ class App extends React.Component {
         return (
             <div className="app">
                 <div className="container bs-docs-container">
-                    <h3>Main App {this.props.header}</h3>
+                    <h3>Main App: {this.props.header}</h3>
                     <button className="btn btn-default" onClick={this.onButtonClick.bind(this)}>Update header</button>
                     <Header headline={this.props.header} />
                     <Footer />
