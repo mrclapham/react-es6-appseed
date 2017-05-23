@@ -32,17 +32,18 @@ This will start a webserver at [http://localhost:9075/](http://localhost:9075/).
 For development you may also use the Webpack server (see the Webpack section below).
 
 
-##Project organisation
+
+## Project organisation
 
 WebPack takes care of JavaScript and Sass postprocessing, the HTML build and a live-reloading development server.
 
-###JavaScript
+### JavaScript
 The raw, source files, are in 'src' and are output to 'build' after post-processing through WebPack. JavaScript may be written in ES6 as it will be transpiled to ES5.
 
-###HTML
+### HTML
 The HTML files live in the build folder too. Edit index.ejs to edit the built html file. Variables may be passed to the built HTML file from the webpack.config.js  
 
-###CSS/SASS
+### CSS/SASS
 The base for the css is Bootstrap-sass. It is installed via npm and then required into the 'sass/entry.scss' file, directly from the 'node_modules' folder and then compiled, via WebPack, for output. The BootStrap base may them be extended by app-specific or module-specific 'partials' - as below.
 
 ```
@@ -76,7 +77,7 @@ require  ("../sass/entry.scss");
 ```
 It is then compiled into the project.
 
-###Unit testing
+### Unit testing
 Unit testing in this project uses Jasmine as the testing framework and Karma as the test runner. To run the tests, in the terminal window, navigate to the root of the project and run:
 
 ```
