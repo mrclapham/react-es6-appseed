@@ -170,16 +170,15 @@ npm run dev
 
 ## the Redux checklist
 
-Redux checklist:
 
 Redux has a load of moving parts - it makes the plumbing of your app simpler but you have a few steps to remember. To help with this here is a checklist. I'd highly reccommend Atul Gawande's excellent [The Checklist Maifesto](http://atulgawande.com/book/the-checklist-manifesto/)
 
-So here we go - you want to do something in your app the makes a th
+So here we go – you want to do something in your app to change the state of a reducer and, therefore, the state of the App.
 
-## 1. create an action 
-1.1: write test - you only need to test the ‘action.type’ and ‘action.payload’
+### 1: create an action 
+**1.1** write test - you only need to test the ‘action.type’ and ‘action.payload’
 
-1.2 write the action, like this: 
+**1.2** write the action, like this: 
 
 ```
 export const updateStuff = (value) => {
@@ -188,10 +187,11 @@ export const updateStuff = (value) => {
 
 ```
 
-2. write the reducer
-2.1 write the reducer test
+### 2: write the reducer
 
+**2.1** write the reducer test
 
+```
 describe(“stuff-reducer", ()=>{
     it("Handles an unknown type.", ()=>{
         expect( StuffReducer() ).toEqual("Default value from stuff reducer");
@@ -202,10 +202,12 @@ describe(“stuff-reducer", ()=>{
         expect(HeaderReducer("",action)).toEqual("Revised header");
     });
 });
+```
 
 
-3. combine your reducers into one big object
+### 3: combine your reducers into one big object
 
+```
 import { combineReducers } from 'redux'
 import thing1 from ‘./thing1-reducer'
 import thing2 from ‘./thing2-reducer'
@@ -214,11 +216,11 @@ export default combineReducers({
   thing1: thing1,
   thing2: thing2
 });
+```
 
-//——————
 
-4. If there is no store, make a store and pull in the combined reducers from step 3 - else go to 5.
-
+### 4: If there is no store, make a store and pull in the combined reducers from step 3 – else go to step 5.
+```
 import reducersIndex from './reducers/reducers-index'
 import { createStore } from 'redux'
 
@@ -230,19 +232,43 @@ import { createStore } from 'redux'
   );
 
 /* eslint-enable */
+```
 
-5. If there is no connected component, make one else move to 5.b
-5.a import connect, bindActionCreators into the component you want to connect
+### 5: If there is no connected component, make one else move to step 5.2
 
+**5.1** import connect, bindActionCreators into the component you want to connect
+
+```
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+```
 
-5.b if you made a new action (step 1 ) import it into the component you want to connect.
+**5.2** if you made a new action (step 1) import it into the component you want to connect.
 
+**5.3** add you Action to your 'mapDispatchToProps' function
+
+**5.4** invoke your action with:
+
+```
+this.props.updateStuff("your payload data here");
+
+```
+See it in context below:
+
+```
 import { updateStuff, updateMoreStuff } from ../redux/action
 
 class App extends React.Component {
-  //—-
+     onButtonClick() {
+        this.props.updateStuff("new header " + String(Math.ceil(Math.random() * 100)));
+    }
+    render() {
+        return (
+            <div className="app">
+                    <button onClick={this.onButtonClick.bind(this)}>Update thing</button>
+            </div>
+        );
+    }
 }
 
 // — 
@@ -251,16 +277,35 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ updateHeader: updateHeader }, dispatch);
-}
+    return bindActionCreators({ 
+    		updateStuff: updateStuff, 
+    		updateMoreStuff: updateMoreStuff 
+    		}, 
+    		dispatch);
+}	
 
 // Default state and props
 App.defaultProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
+```
 
+### 6: display the data from the reducer to your app
 
+The data from the reducer is now available from provider, mapped to props within the App. Add it to the connected commponent like this:
+
+```
+    render() {
+        return (
+            <div className="app">
+            			<div> {this.props.thing1} </div>
+                    <button onClick={this.onButtonClick.bind(this)}>Update thing</button>
+            </div>
+        );
+    }
+
+```
 
 
 
