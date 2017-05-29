@@ -219,7 +219,20 @@ describe(“stuff-reducer", ()=>{
     });
 });
 ```
+**2.2** write the reducer
 
+```
+export default (state = "Default value from stuff reducer", action = {type:null, payload:null} ) => {
+
+    switch (action.type) {
+        case UPDATE_STUFF_CONSTANT :
+            return action.payload
+            break;
+        default:
+            return state;
+    }
+};
+```
 
 ### 3: combine your reducers into one big object
 
@@ -267,7 +280,6 @@ import { bindActionCreators } from "redux";
 
 ```
 this.props.updateStuff("your payload data here");
-
 ```
 See it in context below:
 
