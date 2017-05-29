@@ -178,6 +178,22 @@ So here we go – you want to do something in your app to change the state of a 
 ### 1: create an action 
 **1.1** write test - you only need to test the ‘action.type’ and ‘action.payload’
 
+```
+describe('actions', ()=>{
+    describe('Update stuff action', ()=>{
+        it("Has the correct type", ()=>{
+            const action = updateStuff()
+            expect(action.type).toEqual(UPDATE_STUFF);
+        });
+        it("Has the correct payload", ()=>{
+            const action = updateStuff('New stuff');
+            expect(action.payload).toEqual('New stuff');
+        })
+    });
+});
+
+```
+
 **1.2** write the action, like this: 
 
 ```
