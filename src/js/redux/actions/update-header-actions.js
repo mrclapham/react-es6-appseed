@@ -10,8 +10,17 @@ export const updateFooter = (value) => {
     return {type: UPDATE_FOOTER, payload: value }
 }
 
+export const onBikeDataReceived = (value) =>{
+    return {type: BIKE_DATA_RECEIVED, payload: value }    
+}
+
+export const onBikeDataError = (value) =>{
+    return {type: BIKE_DATA_ERROR, payload: value }    
+}
+
 export const getBikeData = () =>{
     /*
+    BIke data from:
     https://www.bikewise.org/documentation/api_v2#!/incidents/GET_version_incidents_format_get_0
     */
 
@@ -29,12 +38,4 @@ axios.get(url, {
     console.log(error);
   });
 
-}
-
-export const onBikeDataReceived = (value) =>{
-    return {type: BIKE_DATA_RECEIVED, payload: value }    
-}
-
-export const onBikeDataError = (value) =>{
-    return {type: BIKE_DATA_ERROR, payload: value }    
 }
