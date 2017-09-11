@@ -1,21 +1,25 @@
 import 'core-js';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../js/components/App/App.js';
-import Header from '../js/components/header/common-header.js';
-import Footer from '../js/components/footer/footer.js';
-import HeaderVanilla from '../js/vanilla_conmponents/vanilla-header.js';
-import Enums from '../js/Enums.js';
+import App from './components/App/App.js';
+import Header from './components/header/common-header.js';
+import Footer from './components/footer/footer.js';
+import HeaderVanilla from './vanilla_conmponents/vanilla-header.js';
+import Enums from './Enums.js';
 import { Provider } from 'react-redux'; 
-import { store } from './redux/store'
+import { store } from './redux/store';
+
+import { getBikeData } from './redux/actions/update-header-actions'
 require("../sass/entry.scss");
 
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("  store -- ", store)
+    console.log("  store -- ", store.getState())
     init();
 });
 
 function init() {
+    console.log("INIT--- ")
+    getBikeData()
 // Pure JS renderer.
     let _header = HeaderVanilla.create({ text: "Default headline text" })
     .render(document.querySelector('#content-vanilla'));
