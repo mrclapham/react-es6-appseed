@@ -23,19 +23,23 @@ export const getBikeData = () =>{
     BIke data from:
     https://www.bikewise.org/documentation/api_v2#!/incidents/GET_version_incidents_format_get_0
     */
+return(dispatch, getState)=>{
+    const url = "https://bikewise.org:443/api/v2/incidents?page=1"
+    axios.get(url, {
+        params: {
+            proximity: "51.5518, 0.0646",
+            proximity_square: 300
+        }
+      })
+      .then(function (response) {
+        console.log(response.data.incidents);
+        dispatch( onBikeDataReceived(response.data.incidents) )
+      })
+      .catch(function (error) {
+        console.log(error);
+        return error
+      });
+}
 
-const url = "https://bikewise.org:443/api/v2/incidents?page=1"
-axios.get(url, {
-    params: {
-        proximity: "51.5518, 0.0646",
-        proximity_square: 300
-    }
-  })
-  .then(function (response) {
-    console.log(response.data.incidents);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
 
 }

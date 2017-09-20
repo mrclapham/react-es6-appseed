@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../header/common-header';
 import Footer from '../footer/footer';
 import { connect } from "react-redux";
-import { updateHeader } from "../../redux/actions/update-header-actions"
+import { updateHeader, getBikeData } from "../../redux/actions/update-header-actions"
 import { bindActionCreators } from "redux";
 
 class App extends React.Component {
@@ -18,7 +18,6 @@ class App extends React.Component {
     componentDidMount() {
         //console.log("componentDidMount");
     };
-
     //=== Update lifecycle 
     componentWillReceiveProps(nextProps) {
         // console.log("componentWillReceiveProps: nextProps ",nextProps)
@@ -41,14 +40,20 @@ class App extends React.Component {
         this.props.updateHeader("new header " + String(Math.ceil(Math.random() * 100)));
     }
 
+
     //=== Render
     render() {
         return (
             <div className="app">
                 <div className="container bs-docs-container">
-                    <h3>Main App: {this.props.header}</h3>
+                <Header headline={this.props.header} />
+                    <h3>Main App: {this.props.state.header}</h3>
                     <button className="btn btn-default" onClick={this.onButtonClick.bind(this)}>Update header</button>
-                    <Header headline={this.props.header} />
+                    <button className="btn btn-default" onClick={this.props.getBikeData}>Get bike crime stats</button>
+                     
+                    { this.props.state.bikeCrime.map((d,i)=>{
+                        return (<p>hello</p>)
+                    }) } 
                     <Footer />
                 </div>
             </div>
@@ -57,11 +62,14 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { header: state.header }
+    return { state: state }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ updateHeader: updateHeader }, dispatch);
+    return bindActionCreators({ 
+        updateHeader: updateHeader ,
+        getBikeData : getBikeData   
+    }, dispatch);
 }
 
 // Default state and props
