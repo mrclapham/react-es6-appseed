@@ -1,4 +1,4 @@
-import { BIKE_DATA_REQUESTED, BIKE_DATA_RECEIVED, BIKE_DATA_ERROR } from '../actions/constants'
+import { BIKE_DATA_REQUESTED, BIKE_DATA_RECEIVED, BIKE_DATA_ERROR, FILTER_BIKE_DATA } from '../actions/constants'
 
 /*
  The state argument is the state the reducer is responsible for - not the application state.
@@ -16,6 +16,9 @@ export default (state = [], action = { type: null, payload: null }) => {
         case BIKE_DATA_RECEIVED:
             return action.payload
             break;
+        case FILTER_BIKE_DATA:
+            return action.payload
+            break;    
         default:
             return state;
     }
