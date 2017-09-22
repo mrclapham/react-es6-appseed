@@ -18,9 +18,26 @@ export const onBikeDataError = (value) => {
     return { type: BIKE_DATA_ERROR, payload: value }
 }
 
+export const filterBikeDataRoot = (property, value) => {
+    return (dispatch, getState) => {
+        const { bikeCrime } = getState();
+        console.log(" bikeCrime ",bikeCrime)
+        const filteredData = bikeCrime.incidents.filter((d)=>{
+            return String(d[property]) === String(value)
+        })
+        dispatch(filterBikeData(filteredData))
+    }
+    //{ type: FILTER_BIKE_DATA, payload: { property:property, value:value } }
+}
+
+
+export const filterBikeData = (value) => {
+    return { type: FILTER_BIKE_DATA, payload: value }
+}
+
 export const getBikeData = () => {
     /*
-    BIke data from:
+    Bike data from:
     https://www.bikewise.org/documentation/api_v2#!/incidents/GET_version_incidents_format_get_0
     */
     return (dispatch, getState) => {
@@ -32,7 +49,7 @@ export const getBikeData = () => {
             }
         })
             .then(function (response) {
-                console.log( JSON.stringify(response.data.incidents) );
+                console.log(JSON.stringify(response.data.incidents));
                 dispatch(onBikeDataReceived(response.data.incidents))
             })
             .catch(function (error) {
@@ -40,6 +57,4 @@ export const getBikeData = () => {
                 return error
             });
     }
-
-
 }

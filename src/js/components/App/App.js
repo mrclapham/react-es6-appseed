@@ -52,7 +52,7 @@ class App extends React.Component {
                     <button className="btn btn-default" onClick={this.props.getBikeData}>Get bike crime stats</button>
                      
                     { this.props.state.bikeCrime.map((d,i)=>{
-                        return (<div key={i}><p>hello</p></div>)
+                        return (<div key={i}><p>{ d.title }</p></div>)
                     }) } 
                     <Footer />
                 </div>

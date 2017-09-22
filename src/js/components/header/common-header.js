@@ -9,7 +9,7 @@ class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            openFinHeadline: "React component headline here"
+            tokenStateProperty: "React component headline here"
         };
     };
     //=== Mounting lifecycle

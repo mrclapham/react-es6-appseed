@@ -13,12 +13,10 @@ import { getBikeData } from './redux/actions/update-header-actions'
 require("../sass/entry.scss");
 
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("  store -- ", store.getState())
     init();
 });
 
 function init() {
-    console.log("INIT--- ")
     getBikeData()
 // Pure JS renderer.
     let _header = HeaderVanilla.create({ text: "Default headline text" })

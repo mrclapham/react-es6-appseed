@@ -1,14 +1,8 @@
-import { updateHeader, updateFooter } from "./update-header-actions"
-import { UPDATE_HEADER } from './constants'
+import { updateHeader, updateFooter, filterBikeData, filterBikeDataRoot } from "./update-header-actions"
+import { UPDATE_HEADER, FILTER_BIKE_DATA } from './constants'
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { bikeCrime } from '../mockdata'
-
-let store;
-
-// beforeEach(() => {
-//     store = configureStore([thunk])(state);
-// });
 
 describe('actions', () => {
     describe('Update header', () => {
@@ -21,17 +15,35 @@ describe('actions', () => {
             expect(action.payload).toEqual('New heading');
         })
     });
-});
 
+    describe("filterBikeData - an Actions cotaining business logic.", () => {
 
-describe("Test a function which dispatches Actions within the function.", () => {
+    const revisedData = Object.assign({}, {header:"header value", bikeCrime:bikeCrime})
+    const store = configureStore([thunk])(revisedData);
+    store.dispatch(filterBikeDataRoot("id", 77828));
+    const action = store.getActions().find(a => a.type === FILTER_BIKE_DATA);
 
-    const revisedData = Object.assign({}, bikeCrime)
-
-    store = configureStore([thunk], revisedData);
-    store.dispatch(setExportMenuFunctions(actionArray2));
-    const action = store.getActions().find(a => a.type === UPDATE_EXPORT_MENU_DATA);
-    it('Should update the Export Menu data correctly, when PDF productType does not exist', () => {
-        expect(action.payload.menuItems.length).toEqual(2111);
+    it('Should only return the item with an id of 77828', () => {
+        expect(action.payload.length).toEqual(1);
     })
 });
+
+    // describe('filterBikeData', () => {
+    //     it("Has the correct type", () => {
+    //         const action = filterBikeData()
+    //         expect(action.type).toEqual(FILTER_BIKE_DATA);
+    //     });
+    //     it("Has the correct payload", () => {
+    //         const action = filterBikeData("id", 77828 );
+    //         expect(action.payload.property).toEqual('id');
+    //         expect(action.payload.value).toEqual(77828);
+    //     })
+    // });
+
+
+});
+
+
+
+
+
