@@ -54,10 +54,18 @@ class App extends React.Component {
                     <button className="btn btn-default" onClick={this.onButtonClick.bind(this)}>Update header</button>
                     <button className="btn btn-default" onClick={this.props.getBikeData}>Get bike crime stats</button>
                     <button className="btn btn-default" onClick={this.filterBikeData.bind(this)}>filter bike crime stats</button>
-                     
+
+                    { this.props.state.bikeCrimeFiltered.map((d,i)=>{
+                        return (<div key={i}><p>filtered: { d.title }</p></div>)
+                    }) }  
+
+<hr />
                     { this.props.state.bikeCrime.map((d,i)=>{
                         return (<div key={i}><p>{ d.title }</p></div>)
                     }) } 
+
+
+
                     <Footer />
                 </div>
             </div>
@@ -71,9 +79,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ 
-        updateHeader: updateHeader ,
-        getBikeData : getBikeData,
-        filterBikeDataRoot: filterBikeDataRoot  
+        updateHeader,
+        getBikeData,
+        filterBikeDataRoot  
     }, dispatch);
 }
 
