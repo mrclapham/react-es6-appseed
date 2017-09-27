@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../header/common-header';
 import Footer from '../footer/footer';
 import { connect } from "react-redux";
-import { updateHeader, getBikeData } from "../../redux/actions/update-header-actions"
+import { updateHeader, getBikeData, filterBikeDataRoot } from "../../redux/actions/update-header-actions"
 import { bindActionCreators } from "redux";
 
 class App extends React.Component {
@@ -40,6 +40,9 @@ class App extends React.Component {
         this.props.updateHeader("new header " + String(Math.ceil(Math.random() * 100)));
     }
 
+    filterBikeData() {
+        this.props.filterBikeDataRoot("description", "" )
+    }
 
     //=== Render
     render() {
@@ -50,6 +53,7 @@ class App extends React.Component {
                     <h3>Main App: {this.props.state.header}</h3>
                     <button className="btn btn-default" onClick={this.onButtonClick.bind(this)}>Update header</button>
                     <button className="btn btn-default" onClick={this.props.getBikeData}>Get bike crime stats</button>
+                    <button className="btn btn-default" onClick={this.filterBikeData.bind(this)}>filter bike crime stats</button>
                      
                     { this.props.state.bikeCrime.map((d,i)=>{
                         return (<div key={i}><p>{ d.title }</p></div>)
@@ -68,7 +72,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ 
         updateHeader: updateHeader ,
-        getBikeData : getBikeData   
+        getBikeData : getBikeData,
+        filterBikeDataRoot: filterBikeDataRoot  
     }, dispatch);
 }
 

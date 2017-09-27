@@ -19,19 +19,19 @@ export const onBikeDataError = (value) => {
 }
 
 export const filterBikeDataRoot = (property, value) => {
+    console.log("filterBikeDataRoot ")
     return (dispatch, getState) => {
         const { bikeCrime } = getState();
-        console.log(" bikeCrime ",bikeCrime)
-        const filteredData = bikeCrime.incidents.filter((d)=>{
+        const filteredData = bikeCrime.filter((d)=>{
             return String(d[property]) === String(value)
         })
-        dispatch(filterBikeData(filteredData))
+        dispatch(filterBikeDataDispatch(filteredData))
     }
-    //{ type: FILTER_BIKE_DATA, payload: { property:property, value:value } }
 }
 
 
-export const filterBikeData = (value) => {
+export const filterBikeDataDispatch = (value) => {
+    console.log("filterBikeDataDispatch -- ", value)
     return { type: FILTER_BIKE_DATA, payload: value }
 }
 

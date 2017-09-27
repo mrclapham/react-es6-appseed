@@ -18,13 +18,14 @@ describe('actions', () => {
 
     describe("filterBikeData - an Actions cotaining business logic.", () => {
 
-    const revisedData = Object.assign({}, {header:"header value", bikeCrime:bikeCrime})
+    const revisedData = Object.assign({}, {header:"header value", bikeCrime:bikeCrime.incidents})
     const store = configureStore([thunk])(revisedData);
     store.dispatch(filterBikeDataRoot("id", 77828));
     const action = store.getActions().find(a => a.type === FILTER_BIKE_DATA);
 
     it('Should only return the item with an id of 77828', () => {
         expect(action.payload.length).toEqual(1);
+        expect(action.payload[0].id).toEqual(77828);
     })
 });
 
