@@ -335,6 +335,38 @@ The data from the reducer is now available from provider, mapped to props within
 
 ```
 
+## Middleware
+The above example is extremely bare-bones. 
+#### Most apps need to:
+* Asynchrounously get some data from a web-service (probably getting it back as JSON)
+* filter, reorder and generally slice and dice that data for display
+
+For this we need to add some middleware 
+
+[http://redux.js.org/docs/advanced/Middleware.html](http://redux.js.org/docs/advanced/Middleware.html)
+
+## Where do I put my business logic?
+
+There is no single answer to this, opinions vary. 
+
+For this example, to keep it simple, put your business logic in the Actions. You may put some business logic in components, as connected components may access the app's 'state' via passed down props from the 'Provider'. Don't put your business logic in the 'render' method of a component. 
+
+We are going to keep things clean, stateless and testable in this example by putting any business logic in an 'action', reflecting the new state in a reducer listening for that action and keeping the 'Provider's' 'state' as the single source of truth abouth the state of the entire App.
+
+We are going to avoid setting state in our components as other components are not able to easily access it. Setting state within a component is not totally taboo as it may be appropriate for, say, a toggle button where the on/off state is only of interest to the component itself.
+
+The above example is very, very bare bones - we are going to have to get a bit more complicated and add some middleware to allow us to  
+
+
+
+
+
+
+
+
+
+
+
 
 
 
