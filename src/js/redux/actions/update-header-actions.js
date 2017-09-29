@@ -17,9 +17,13 @@ export const onBikeDataReceived = (value) => {
 export const onBikeDataError = (value) => {
     return { type: BIKE_DATA_ERROR, payload: value }
 }
-
+/*
+    This is an action which adds some business logic.
+    It returns a function, which is passed the "dispatch" and "getState" methods of the "store"
+    as arguments.
+    Using the thunk middleware the function is invoked and the dispatched value returned
+*/
 export const filterBikeDataRoot = (property, value) => {
-    console.log("filterBikeDataRoot ")
     return (dispatch, getState) => {
         const { bikeCrime } = getState();
         const filteredData = bikeCrime.filter((d)=>{
@@ -28,7 +32,6 @@ export const filterBikeDataRoot = (property, value) => {
         dispatch(filterBikeDataDispatch(filteredData))
     }
 }
-
 
 export const filterBikeDataDispatch = (value) => {
     console.log("filterBikeDataDispatch -- ", value)

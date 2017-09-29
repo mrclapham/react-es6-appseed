@@ -341,21 +341,96 @@ The above example is extremely bare-bones.
 * Asynchrounously get some data from a web-service (probably getting it back as JSON)
 * filter, reorder and generally slice and dice that data for display
 
-For this we need to add some middleware 
+For this we need to add some middleware. For more about middleware see: [http://redux.js.org/docs/advanced/Middleware.html](http://redux.js.org/docs/advanced/Middleware.html)
 
-[http://redux.js.org/docs/advanced/Middleware.html](http://redux.js.org/docs/advanced/Middleware.html)
+Refering back to stage 4, we need to add the lines:
+
+```
+import thunk from 'redux-thunk'
+
+applyMiddleware(thunk)
+
+```
+as below...
+
+```
+import reducersIndex from './reducers/reducers-index'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+
+/* eslint-disable no-underscore-dangle */
+  export const store = createStore(
+   reducersIndex, /* preloadedState, */
+   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+   applyMiddleware(thunk)
+  );
+
+/* eslint-enable */
+
+```
 
 ## Where do I put my business logic?
 
 There is no single answer to this, opinions vary. 
 
-For this example, to keep it simple, put your business logic in the Actions. You may put some business logic in components, as connected components may access the app's 'state' via passed down props from the 'Provider'. Don't put your business logic in the 'render' method of a component. 
+For this example, to keep it simple, put your business logic in an Action. You may put some business logic in components, as connected components may access the app's 'state' via passed down props from the 'Provider'. Don't put your business logic in the 'render' method of a component. 
 
 We are going to keep things clean, stateless and testable in this example by putting any business logic in an 'action', reflecting the new state in a reducer listening for that action and keeping the 'Provider's' 'state' as the single source of truth abouth the state of the entire App.
 
 We are going to avoid setting state in our components as other components are not able to easily access it. Setting state within a component is not totally taboo as it may be appropriate for, say, a toggle button where the on/off state is only of interest to the component itself.
 
-The above example is very, very bare bones - we are going to have to get a bit more complicated and add some middleware to allow us to  
+The above example is very, very bare bones - we are going to have to get a bit more complicated and add 'middleware' to invoke a returned function which in turn returns the { type: TYPE_OF_ACTION, payload: value_of_payload } object the Reducers expect.
+
+Write your Action like this...
+
+```
+import { FILTER_STUFF } from './constants';
+
+export const doSomeBusinessLogic = (property, value) => {
+    return (dispatch, getState) => {
+        const { existingState } = getState();
+        const filteredData = existingState.filter((d)=>{
+            return String(d[property]) === String(value)
+        })
+        dispatch(dispatchDoSomeBusinessLogic(filteredData))
+    }
+}
+```
+This invokes a simple Action 'dispatchDoSomeBusinessLogic' (see below)
+
+```
+export const dispatchDoSomeBusinessLogic = (value) => {
+    return { type: FILTER_STUFF, payload: value }
+}
+```
+
+...and you test it like this.
+
+You need to create a mock store - in order to pass it an initial value and to have access to the 'dispatch' and 'getState' methods of the store. The store also needs the 'thunk' middleware injected.
+
+```
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import { doSomeBusinessLogic } from './doSomeBusinessLogic'
+
+..............
+
+const testData = [{id:123}, {id:345}];
+
+    describe("Actions containing business logic - return an item with a specific ID.", () => {
+        const revisedData = Object.assign({}, { header: "header value", data: testData })
+        const store = configureStore([thunk])(revisedData);
+        store.dispatch(doSomeBusinessLogic("id", 123));
+        const action = store.getActions().find(a => a.type === FILTER_STUFF);
+
+        it('Should only return the item with an id of 123', () => {
+            expect(action.payload.length).toEqual(1);
+            expect(action.payload[0].id).toEqual(123);
+        })
+    });
+
+```
+
 
 
 
