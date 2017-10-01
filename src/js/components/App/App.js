@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../header/common-header';
 import Footer from '../footer/footer';
 import { connect } from "react-redux";
-import { updateHeader, getBikeData, filterBikeDataRoot } from "../../redux/actions/update-header-actions"
+import { updateHeader, getBikeData, filterBikeDataRoot } from "../../redux/actions/actions"
 import { bindActionCreators } from "redux";
 
 class App extends React.Component {
@@ -41,7 +41,7 @@ class App extends React.Component {
     }
 
     filterBikeData() {
-        this.props.filterBikeDataRoot("description", "" )
+        this.props.filterBikeDataRoot("description", "")
     }
 
     //=== Render
@@ -49,23 +49,21 @@ class App extends React.Component {
         return (
             <div className="app">
                 <div className="container bs-docs-container">
-                <Header headline={this.props.header} />
+                    <Header headline={this.props.header} />
                     <h3>Main App: {this.props.state.header}</h3>
                     <button className="btn btn-default" onClick={this.onButtonClick.bind(this)}>Update header</button>
                     <button className="btn btn-default" onClick={this.props.getBikeData}>Get bike crime stats</button>
                     <button className="btn btn-default" onClick={this.filterBikeData.bind(this)}>filter bike crime stats</button>
 
-                    { this.props.state.bikeCrimeFiltered.map((d,i)=>{
-                        return (<div key={i}><p>filtered: { d.title }</p></div>)
-                    }) }  
+                    <h3>Data loading status: {this.props.state.bikeCrimeRetreivalStatus}</h3>
+                    {this.props.state.bikeCrimeFiltered.map((d, i) => {
+                        return (<div key={i}><p>filtered: {d.title}</p></div>)
+                    })}
 
-<hr />
-                    { this.props.state.bikeCrime.map((d,i)=>{
-                        return (<div key={i}><p>{ d.title }</p></div>)
-                    }) } 
-
-
-
+                    <hr />
+                    {this.props.state.bikeCrime.map((d, i) => {
+                        return (<div key={i}><p>{d.title}</p></div>)
+                    })}
                     <Footer />
                 </div>
             </div>
@@ -78,10 +76,10 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ 
+    return bindActionCreators({
         updateHeader,
         getBikeData,
-        filterBikeDataRoot  
+        filterBikeDataRoot
     }, dispatch);
 }
 

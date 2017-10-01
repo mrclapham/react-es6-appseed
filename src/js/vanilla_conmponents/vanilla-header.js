@@ -14,12 +14,16 @@ let Header = {
         this.config.target = target;
 
         let template = `<div class="header-vanilla">
-        <div>This is a plain, vanilla, JS component - no libraries.</div>
+        <div><p>This is a plain, vanilla, JS component - no libraries.</p>
+            <p></p>
+        </div>
             <div class="header-text">${this.getText()}</div>
             <div class="header-sub-text">${this.getSubText()}</div>
+            <hr />
             <p>Input header text here:</p>
+            <p>
             <input id="header-input" class="no-drag header-textbox form-control"  type="text" value=${'"'+this.getText()+'"'} />
-
+            </p>
         </div>`
         this.getTarget().innerHTML = template;
         let _input = document.querySelector('#header-input');

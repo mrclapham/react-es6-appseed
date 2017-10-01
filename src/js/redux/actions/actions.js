@@ -14,6 +14,10 @@ export const onBikeDataReceived = (value) => {
     return { type: BIKE_DATA_RECEIVED, payload: value }
 }
 
+export const onBikeDataRequested = (value) => {
+    return { type: BIKE_DATA_REQUESTED, payload: value }
+}
+
 export const onBikeDataError = (value) => {
     return { type: BIKE_DATA_ERROR, payload: value }
 }
@@ -34,7 +38,6 @@ export const filterBikeDataRoot = (property, value) => {
 }
 
 export const filterBikeDataDispatch = (value) => {
-    console.log("filterBikeDataDispatch -- ", value)
     return { type: FILTER_BIKE_DATA, payload: value }
 }
 
@@ -44,6 +47,7 @@ export const getBikeData = () => {
     https://www.bikewise.org/documentation/api_v2#!/incidents/GET_version_incidents_format_get_0
     */
     return (dispatch, getState) => {
+        dispatch(onBikeDataRequested("requested"));
         const url = "https://bikewise.org:443/api/v2/incidents?page=1"
         axios.get(url, {
             params: {
@@ -52,11 +56,11 @@ export const getBikeData = () => {
             }
         })
             .then(function (response) {
-                console.log(JSON.stringify(response.data.incidents));
                 dispatch(onBikeDataReceived(response.data.incidents))
             })
             .catch(function (error) {
-                console.log(error);
+                //console.log(error);
+                dispatch(onBikeDataError(error))
                 return error
             });
     }

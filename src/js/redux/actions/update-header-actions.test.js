@@ -1,4 +1,4 @@
-import { updateHeader, updateFooter, filterBikeData, filterBikeDataRoot } from "./update-header-actions"
+import { updateHeader, updateFooter, filterBikeData, filterBikeDataRoot } from "./actions"
 import { UPDATE_HEADER, FILTER_BIKE_DATA } from './constants'
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';

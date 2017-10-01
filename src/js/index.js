@@ -9,7 +9,7 @@ import Enums from './Enums.js';
 import { Provider } from 'react-redux'; 
 import { store } from './redux/store';
 
-import { getBikeData } from './redux/actions/update-header-actions'
+import { getBikeData } from './redux/actions/actions'
 require("../sass/entry.scss");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function init() {
     getBikeData()
 // Pure JS renderer.
-    let _header = HeaderVanilla.create({ text: "Default headline text" })
+    const _header = HeaderVanilla.create({ text: "Default headline text" })
     .render(document.querySelector('#content-vanilla'));
 
 // React renderer.
