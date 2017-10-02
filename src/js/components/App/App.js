@@ -49,15 +49,13 @@ class App extends React.Component {
         return (
             <div className="app">
                 <div className="container bs-docs-container">
-                    <Header headline={this.props.header} />
-                    <h3>Main App: {this.props.state.header}</h3>
+                    <Header headline={this.props.state.header} />
                     <button className="btn btn-default" onClick={this.onButtonClick.bind(this)}>Update header</button>
                     <button className="btn btn-default" onClick={this.props.getBikeData}>Get bike crime stats</button>
-                    <button className="btn btn-default" onClick={this.filterBikeData.bind(this)}>filter bike crime stats</button>
-
+                    <button className="btn btn-default" style={{"display": this.props.state.bikeCrimeRetreivalStatus === "data received" ? "inline" : "none"}} onClick={this.filterBikeData.bind(this)}>filter bike crime stats</button>
                     <h3>Data loading status: {this.props.state.bikeCrimeRetreivalStatus}</h3>
                     {this.props.state.bikeCrimeFiltered.map((d, i) => {
-                        return (<div key={i}><p>filtered: {d.title}</p></div>)
+                        return (<div key={i}><p className="filtered-bikecrime">{d.title}</p></div>)
                     })}
 
                     <hr />

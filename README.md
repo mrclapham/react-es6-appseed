@@ -388,10 +388,16 @@ import { FILTER_STUFF } from './constants';
 
 export const doSomeBusinessLogic = (property, value) => {
     return (dispatch, getState) => {
+
+        // grab the var you need from the existing state
         const { existingState } = getState();
+
+        // do your slicing, dicing and general business logic here
         const filteredData = existingState.filter((d)=>{
             return String(d[property]) === String(value)
         })
+        
+        // then dispatch the function to be heard by the reducers
         dispatch(dispatchDoSomeBusinessLogic(filteredData))
     }
 }

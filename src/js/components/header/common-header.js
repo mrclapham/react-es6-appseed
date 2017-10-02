@@ -37,22 +37,22 @@ class Header extends React.Component {
     //=== Render
     render() {
         return (<div className="common-header">
-            <p>Header: React component</p>
-            <div className="main-header">
+            <h2 className="main-header">
                 {this.props.headline}
-            </div>
-            <div className='sub-header'>
+            </h2>
+            <h3 className='sub-header'>
                 {this.props.subHeadline}
-            </div>
+            </h3>
             <SubHeader />
-
+            <p>This is a React component.</p>
+            <p>To update the header to dispay a random number click the 'Update header' button below. </p>
         </div>);
     }
 }
 // Default state and props
 Header.defaultProps = {
-    headline: "This is the default headline",
-    subHeadline: "The subHeadline"
+    headline: "The default headline.",
+    subHeadline: "The default subheadline."
 };
 
 export default Header;

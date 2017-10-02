@@ -11,7 +11,7 @@ describe('ReactHeader', function () {
         const wrapper = shallow(<ReactHeader />);
         const inst = wrapper.instance();
         expect(inst instanceof ReactHeader).toEqual(true);
-        expect(wrapper.contains(["This is the default headline"])).toEqual(true);
+        expect(wrapper.contains(["The default headline."])).toEqual(true);
     });
     
     it('renders a default header with default text', () => {
