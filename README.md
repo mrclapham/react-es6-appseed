@@ -215,7 +215,7 @@ describe(“stuff-reducer", ()=>{
 
     it("Handles action of type UPDATE_STUFF_CONSTANT.", ()=>{
         const action = {type: UPDATE_STUFF_CONSTANT,  payload: "Revised stuff”}
-        expect(HeaderReducer("",action)).toEqual("Revised header");
+        expect(HeaderReducer("",action)).toEqual("Revised stuff");
     });
 });
 ```
@@ -321,7 +321,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 ### 6: display the data from the reducer to your app
 
-The data from the reducer is now available from provider, mapped to props within the App. Add it to the connected commponent like this:
+The data from the reducers is now available from Provider, mapped to props within the App. Add it to the connected commponent like this:
 
 ```
     render() {
@@ -341,7 +341,7 @@ The above example is extremely bare-bones.
 * Asynchrounously get some data from a web-service (probably getting it back as JSON)
 * filter, reorder and generally slice and dice that data for display
 
-For this we need to add some middleware. For more about middleware see: [http://redux.js.org/docs/advanced/Middleware.html](http://redux.js.org/docs/advanced/Middleware.html)
+For this we need to add some middleware. The middleware is needed as the returned value from the action is not the {type: BLAH, payload: 'blah'} shape Redux is expecting - it is function. The middleware will deal with this. For more about middleware see: [http://redux.js.org/docs/advanced/Middleware.html](http://redux.js.org/docs/advanced/Middleware.html). 
 
 Refering back to stage 4, we need to add the lines:
 
@@ -396,7 +396,7 @@ export const doSomeBusinessLogic = (property, value) => {
         const filteredData = existingState.filter((d)=>{
             return String(d[property]) === String(value)
         })
-        
+
         // then dispatch the function to be heard by the reducers
         dispatch(dispatchDoSomeBusinessLogic(filteredData))
     }
