@@ -437,6 +437,30 @@ const testData = [{id:123}, {id:345}];
 
 ```
 
+You also need to jump another hoop when Enzyme testing connected components. They need to have a 'context' object passed 
+
+
+```
+import { state } from '../defaultState';
+const mockStore = configureStore([thunk])(Object.assign({}, state)) ;
+const context = { store: mockStore };
+
+describe('my connected component', () => {
+    it('Will render', () => {
+        wrapper = shallow(
+            <MyConnectedComponent
+                name        = {"My name"}
+                onChange   	= {()=>{})
+                otherStuff 	= { otherStuff }
+                />,
+                { context }
+        );
+        expect(wrapper.find('some_dom_element')).not.toBeNull();
+        expect(wrapper.props().name).toEqual("My name");
+    });
+
+```
+
 
 
 
