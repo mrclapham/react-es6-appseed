@@ -132,7 +132,7 @@ In the 'webpack.config.js' file the section which deals with HTML is:
 If you wish to edit the basic template edit the ejs file in 'src/html/index.ejs'.
 
 ### JavaScript/React
-The settings to compile JavaScript/React/es2015 and produce source maps is: 
+The settings to compile JavaScript/React/es2016 and produce source maps is: 
 
 ```
         rules: [{
@@ -145,7 +145,7 @@ In addition the '.babelrc' also needs to be set as follows:
 
 ```
 {
-  "presets": ["react-es2015"]
+  "presets": ["react","es2016", "stage-2"]
 }
 ```
 ### Dev Server 
@@ -373,7 +373,7 @@ import thunk from 'redux-thunk'
 
 There is no single answer to this, opinions vary. 
 
-For this example, to keep it simple, put your business logic in an Action. You may put some business logic in components, as connected components may access the app's 'state' via passed down props from the 'Provider'. Don't put your business logic in the 'render' method of a component. 
+Put your business logic in Action Creators. Don't put business logic in components. As connected components may access the app's 'state' via passed down props from the 'Provider' the quick and dirty technique of putting business logic in the Component is a temptation - but only have display logic in your Components. Absolutely never put your business logic in the 'render' method of a component. 
 
 We are going to keep things clean, stateless and testable in this example by putting any business logic in an 'action', reflecting the new state in a reducer listening for that action and keeping the 'Provider's' 'state' as the single source of truth abouth the state of the entire App.
 

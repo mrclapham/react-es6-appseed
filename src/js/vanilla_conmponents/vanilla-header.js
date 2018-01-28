@@ -71,7 +71,7 @@ export default {create:(config)=>{
     };
 
     //If there are any config objects -
-    let _combinedConfig = Object.assign(_config, config);
+    let _combinedConfig = {..._config, ...config};
     let h = Object.create(Header);
     h.config = _combinedConfig;
     return h;

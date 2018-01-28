@@ -86,7 +86,8 @@ module.exports = function (config) {
             query: {
               presets: [
                 "react",
-                "es2015"
+                "es2016",
+                "stage-2"
               ]
             }
           }
