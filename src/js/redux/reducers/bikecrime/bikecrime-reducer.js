@@ -1,4 +1,4 @@
-import { BIKE_DATA_REQUESTED, BIKE_DATA_RECEIVED, BIKE_DATA_ERROR } from '../actions/constants'
+import { BIKE_DATA_REQUESTED, BIKE_DATA_RECEIVED, BIKE_DATA_ERROR } from '../../actions/constants'
 
 /*
  The state argument is the state the reducer is responsible for - not the application state.

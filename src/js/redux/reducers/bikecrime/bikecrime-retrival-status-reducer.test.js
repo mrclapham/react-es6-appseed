@@ -1,5 +1,5 @@
 import bikecrimeRetreivalStatusReducer from './bikecrime-retreival-status-reducer';
-import { BIKE_DATA_REQUESTED, BIKE_DATA_RECEIVED, BIKE_DATA_ERROR  } from '../actions/constants';
+import { BIKE_DATA_REQUESTED, BIKE_DATA_RECEIVED, BIKE_DATA_ERROR  } from '../../actions/constants';
 
 describe("bikecrime-filtered-reducer", ()=>{
     it("Handles an unknown type.", ()=>{

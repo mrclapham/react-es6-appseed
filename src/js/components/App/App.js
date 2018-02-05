@@ -52,14 +52,14 @@ class App extends React.Component {
                     <Header headline={this.props.state.header} />
                     <button className="btn btn-default" onClick={this.onButtonClick.bind(this)}>Update header</button>
                     <button className="btn btn-default" onClick={this.props.getBikeData}>Get bike crime stats</button>
-                    <button className="btn btn-default" style={{"display": this.props.state.bikeCrimeRetreivalStatus === "data received" ? "inline" : "none"}} onClick={this.filterBikeData.bind(this)}>filter bike crime stats</button>
-                    <h3>Data loading status: {this.props.state.bikeCrimeRetreivalStatus}</h3>
-                    {this.props.state.bikeCrimeFiltered.map((d, i) => {
+                    <button className="btn btn-default" style={{"display": this.props.state.bikeCrime.bikeCrimeRetreivalStatus === "data received" ? "inline" : "none"}} onClick={this.filterBikeData.bind(this)}>filter bike crime stats</button>
+                    <h3>Data loading status: {this.props.state.bikeCrime.bikeCrimeRetreivalStatus}</h3>
+                    {this.props.state.bikeCrime.bikeCrimeFiltered.map((d, i) => {
                         return (<div key={i}><p className="filtered-bikecrime">{d.title}</p></div>)
                     })}
 
                     <hr />
-                    {this.props.state.bikeCrime.map((d, i) => {
+                    {this.props.state.bikeCrime.bikeCrime.map((d, i) => {
                         return (<div key={i}><p>{d.title}</p></div>)
                     })}
                     <Footer />

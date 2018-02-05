@@ -1,5 +1,5 @@
 import bikecrimeFilteredReducer from './bikecrime-filtered-reducer';
-import { FILTER_BIKE_DATA, BIKE_DATA_REQUESTED, BIKE_DATA_RECEIVED, BIKE_DATA_ERROR  } from '../actions/constants';
+import { FILTER_BIKE_DATA, BIKE_DATA_REQUESTED, BIKE_DATA_RECEIVED, BIKE_DATA_ERROR  } from '../../actions/constants';
 import { bikeCrime } from '../mockdata';
 
 describe("bikecrime-filtered-reducer", ()=>{
